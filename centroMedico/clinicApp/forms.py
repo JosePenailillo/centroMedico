@@ -1,11 +1,11 @@
 from django import forms
 from django.core import validators
 from django.core.validators import RegexValidator
-from .models import Secretaria, Medico, Paciente
+from .models import Secretaria, Medico, Paciente, HojaAtencion
 
 
 class SecretariaForm(forms.Form):
-    rut = forms.IntegerField()
+    rut = forms.CharField()
     nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
@@ -26,27 +26,19 @@ class SecretariaForm(forms.Form):
                     validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
         ]
     )
-    category = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
-        ]
-    )
 
 
     rut.widget.attrs['class'] = 'form-control'
     nombres.widget.attrs['class'] = 'form-control'
     apellido_p.widget.attrs['class'] = 'form-control'
     apellido_m.widget.attrs['class'] = 'form-control'
-    category.widget.attrs['class'] = 'form-control'
 
 class SecretariaForm(forms.ModelForm):
     class Meta:
         model = Secretaria
         fields = '__all__'
 
-    rut = forms.IntegerField()
+    rut = forms.CharField()
     nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
@@ -67,20 +59,13 @@ class SecretariaForm(forms.ModelForm):
                     validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
         ]
     )
-    category = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
-        ]
-    )
+
 
 
     rut.widget.attrs['class'] = 'form-control'
     nombres.widget.attrs['class'] = 'form-control'
     apellido_p.widget.attrs['class'] = 'form-control'
     apellido_m.widget.attrs['class'] = 'form-control'
-    category.widget.attrs['class'] = 'form-control'
 
 class Especialidades(forms.Form):
     name = forms.CharField(max_length=50)
@@ -93,7 +78,7 @@ class Especialidades(forms.Form):
 
 
 class MedicoForm(forms.Form):
-    rut = forms.IntegerField()
+    rut = forms.CharField()
     nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
@@ -114,6 +99,7 @@ class MedicoForm(forms.Form):
                     validators.MaxLengthValidator(25, message='El apellido debe tener maximo 15 caracteres'),
         ]
     )
+
     especialidad = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
@@ -134,7 +120,7 @@ class MedicoForm(forms.ModelForm):
             model = Medico
             fields = '__all__'
 
-        rut = forms.IntegerField()
+        rut = forms.CharField()
         nombres = forms.CharField(
             validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                        message='La primera letra debe contener mayuscula y debe ser caracteres'),
@@ -353,8 +339,8 @@ class PacienteForm(forms.ModelForm):
 
 #hoja atencion
 
-class HojaAtencion(forms.Form):
-    rut = forms.IntegerField()
+class HojaForm(forms.Form):
+    rutPaciente = forms.CharField()
     profesionalAtendio = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
@@ -432,87 +418,88 @@ class HojaAtencion(forms.Form):
     )
 
 
-    class pacienteForm(forms.ModelForm):
-        class Meta:
-            model = Medico
-            fields = '__all__'
+class HojaForm(forms.ModelForm):
+    class Meta:
+        model = HojaAtencion
+        fields = '__all__'
 
-        rut = forms.IntegerField()
-        profesionalAtendio  = forms.IntegerField()
-        anamnesisAnterior = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-                        ]
-        )
+    rutPaciente = forms.CharField()
+    profesionalAtendio  = forms.CharField()
+    anamnesisAnterior = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+                    ]
+    )
 
-        medicamentosRecetados = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-                        ]
-        )
-        examenesSolicitados = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-                        ]
-        )
-        alergias = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-                        ]
-        )
-        historialEnfermedades = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+    medicamentosRecetados = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+                    ]
+    )
+    examenesSolicitados = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+                    ]
+    )
+    alergias = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+                    ]
+    )
+    historialEnfermedades = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
 
-                        ]
-        )
+                    ]
+    )
 
-        medicamentosQueToma = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+    medicamentosQueToma = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
 
-                        ]
-        )
+                    ]
+    )
 
-        diagnosticoObtenido = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+    diagnosticoObtenido = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
 
-                        ]
-        )
+                    ]
+    )
 
-        observaciones = forms.CharField(
-            validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                       message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                        validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+    observaciones = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
 
-                        ]
-        )
+                    ]
+    )
 
-        rut.widget.attrs['class'] = 'form-control'
-        profesionalAtendio.widget.attrs['class'] = 'form-control'
-        medicamentosRecetados.widget.attrs['class'] = 'form-control'
-        examenesSolicitados.widget.attrs['class'] = 'form-control'
-        alergias.widget.attrs['class'] = 'form-control'
-        historialEnfermedades.widget.attrs['class'] = 'form-control'
-        medicamentosQueToma.widget.attrs['class'] = 'form-control'
-        diagnosticoObtenido.widget.attrs['class'] = 'form-control'
-        observaciones.widget.attrs['class'] = 'form-control'
+    rutPaciente.widget.attrs['class'] = 'form-control'
+    profesionalAtendio.widget.attrs['class'] = 'form-control'
+    medicamentosRecetados.widget.attrs['class'] = 'form-control'
+    anamnesisAnterior.widget.attrs['class'] = 'form-control'
+    examenesSolicitados.widget.attrs['class'] = 'form-control'
+    alergias.widget.attrs['class'] = 'form-control'
+    historialEnfermedades.widget.attrs['class'] = 'form-control'
+    medicamentosQueToma.widget.attrs['class'] = 'form-control'
+    diagnosticoObtenido.widget.attrs['class'] = 'form-control'
+    observaciones.widget.attrs['class'] = 'form-control'
 
 
 

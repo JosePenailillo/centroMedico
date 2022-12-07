@@ -1,7 +1,7 @@
 from django.forms import modelform_factory
 from django.shortcuts import render, redirect, get_object_or_404
 
-from clinicApp.forms import SecretariaForm, MedicoForm, PacienteForm
+from clinicApp.forms import SecretariaForm, MedicoForm, PacienteForm, HojaForm
 from clinicApp.models import Secretaria, Medico, Paciente, HojaAtencion
 
 
@@ -19,7 +19,7 @@ def startSecretaria(request):
 #SecretariaForm = modelform_factory(Secretaria, exclude=[])
 #MedicoForm = modelform_factory(Medico, exclude=[])
 #PacienteForm = modelform_factory(Paciente, exclude=[])
-HojaForm = modelform_factory(HojaAtencion, exclude=[])
+#HojaForm = modelform_factory(HojaAtencion, exclude=[])
 
 def agregarSecretaria(request):
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def agregarSecretaria(request):
                 apellido_p=secre['apellido_p'],
                 apellido_m=secre['apellido_m'],
             )
-            secretaria.save()
+            #secretaria.save()
             form = ''
             formularioSecretaria.save()
             return redirect('secretaria')
@@ -96,7 +96,7 @@ def agregarMedico(request):
                 #apellido_m = models.CharField(max_length=25)
                 #category = models.ForeignKey(Especialidades, on_delete=models.SET_NULL, null=True)
             )
-            medico.save()
+            #medico.save()
             formularioMedico.save()
             return redirect('medico')
 
@@ -108,7 +108,7 @@ def agregarMedico(request):
     return render(request, "agregar-medico.html",data)
 
 
-def editarMedico(request):
+def editarMedico(request, id):
     medico = get_object_or_404(Medico, pk=id)
     if request.method == 'POST':
         formularioMedico = MedicoForm(request.POST, instance=medico)
@@ -161,7 +161,7 @@ def agregarPaciente(request):
                 country=paci['country'],
                 health=paci['health']
             )
-            paciente.save()
+            #paciente.save()
             formularioPaciente.save()
             return redirect('paciente')
 
@@ -185,7 +185,7 @@ def editarPaciente(request, id):
         formularioPaciente = PacienteForm(instance=paciente)
 
     data = {'formularioPaciente': formularioPaciente}
-    return render(request, "agregar-paciente.html",data)
+    return render(request, "editar-paciente.html",data)
 
 
 def eliminarPaciente(request, id):
@@ -210,6 +210,20 @@ def agregarHoja(request):
     if request.method == 'POST':
         formularioHoja = HojaForm(request.POST)
         if formularioHoja.is_valid():
+            hoj = formularioHoja.cleaned_data
+            hoja = HojaAtencion(
+                rutPaciente = hoj['rutPaciente'],
+                profesionalAtendio= hoj['profesionalAtendio'],
+                anamnesisAnterior=hoj['anamnesisAnterior'],
+                medicamentosRecetados=hoj['medicamentosRecetados'],
+                examenesSolicitados=hoj['examenesSolicitados'],
+                alergias=hoj['alergias'],
+                historialEnfermedades=hoj['historialEnfermedades'],
+                medicamentosQueToma=hoj['medicamentosQueToma'],
+                diagnosticoObtenido=hoj['diagnosticoObtenido'],
+                observaciones=hoj['observaciones'],
+            )
+            #hoja.save()
             formularioHoja.save()
             return redirect('hoja')
 
@@ -221,7 +235,7 @@ def agregarHoja(request):
     return render(request, "agregar-hoja.html",data)
 
 
-def editarHoja(request):
+def editarHoja(request, id):
     hoja = get_object_or_404(HojaAtencion, pk=id)
     if request.method == 'POST':
         formularioHoja = HojaForm(request.POST, instance=hoja)
