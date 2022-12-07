@@ -9,10 +9,22 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand p-3" >
-        <img class="avatar" src="{% static 'IMG/logo.png' %}">
-        <h2 class="ms-3 align-center">Centro Medico <b> Alliansalud </b></h2>
+    <!--INICIO NAVBAR-->
+    <nav class="navbar navbar-expand">
+      <div class="container-fluid">
+         <img class="avatar" src="{% static 'IMG/logo.png' %}">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           <h2 class="ms-3 align-center">Centro Médico <b> Alliansalud </b></h2>
+          </ul>
+          <form class="d-flex" role="search">
+            <a class="btn btn-success btn-outline-light me-2" style="width:180px" href="/vistasecretaria" role="button">Menú</a>
+            <button class="btn btn-danger" style="width:180px" type="submit">Cerrar Sesión</button>
+          </form>
+        </div>
+      </div>
     </nav>
+    <!--FIN NAVBAR-->
     <div class="container mt-5">
         <div class="alert alert-info display-1 text-center">Agregar Medico
         {{titulo}}

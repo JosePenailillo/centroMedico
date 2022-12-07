@@ -1,7 +1,7 @@
 from django.forms import modelform_factory
 from django.shortcuts import render, redirect, get_object_or_404
 
-from clinicApp.forms import SecretariaForm
+from clinicApp.forms import SecretariaForm, MedicoForm, PacienteForm
 from clinicApp.models import Secretaria, Medico, Paciente, HojaAtencion
 
 
@@ -17,8 +17,8 @@ def startSecretaria(request):
     return render(request, 'secretaria.html', data)
 
 #SecretariaForm = modelform_factory(Secretaria, exclude=[])
-MedicoForm = modelform_factory(Medico, exclude=[])
-PacienteForm = modelform_factory(Paciente, exclude=[])
+#MedicoForm = modelform_factory(Medico, exclude=[])
+#PacienteForm = modelform_factory(Paciente, exclude=[])
 HojaForm = modelform_factory(HojaAtencion, exclude=[])
 
 def agregarSecretaria(request):
@@ -83,6 +83,20 @@ def agregarMedico(request):
     if request.method == 'POST':
         formularioMedico = MedicoForm(request.POST)
         if formularioMedico.is_valid():
+            medic = formularioMedico.cleaned_data
+            medico = Medico(
+                rut=medic['rut'],
+                nombres=medic['nombres'],
+                apellido_p=medic['apellido_p'],
+                apellido_m=medic['apellido_m'],
+                category=medic['category'],
+
+                #nombres = models.CharField(max_length=50)
+                #apellido_p = models.CharField(max_length=25)
+                #apellido_m = models.CharField(max_length=25)
+                #category = models.ForeignKey(Especialidades, on_delete=models.SET_NULL, null=True)
+            )
+            medico.save()
             formularioMedico.save()
             return redirect('medico')
 
@@ -132,6 +146,22 @@ def agregarPaciente(request):
     if request.method == 'POST':
         formularioPaciente = PacienteForm(request.POST)
         if formularioPaciente.is_valid():
+            paci = formularioPaciente.cleaned_data
+            paciente = Paciente(
+                rut= paci['rut'],
+                apellido_p=paci['apellido_p'],
+                apellido_m=paci['apellido_m'],
+                gender=paci['gender'],
+                dateB=paci['dateB'],
+                address=paci['address'],
+                Comuna=paci['Comuna'],
+                phone=paci['phone'],
+                emergencyContact=paci['emergencyContact'],
+                emergencyPhone=paci['emergencyPhone'],
+                country=paci['country'],
+                health=paci['health']
+            )
+            paciente.save()
             formularioPaciente.save()
             return redirect('paciente')
 
@@ -142,7 +172,7 @@ def agregarPaciente(request):
     data = {'formularioPaciente': formularioPaciente}
     return render(request, "agregar-paciente.html",data)
 
-def editarPaciente(request):
+def editarPaciente(request, id):
     paciente = get_object_or_404(Paciente, pk=id)
     if request.method == 'POST':
         formularioPaciente = PacienteForm(request.POST, instance=paciente)
