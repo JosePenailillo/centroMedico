@@ -5,7 +5,7 @@ from django import forms
 class Secretaria(models.Model):
     rut = models.CharField(max_length=12)
     nombres = models.CharField(max_length=50)
-    apellido_p = models.CharField(max_length=25)
+    apellido_p = models.CharField(max_length=25, verbose_name='Apellido Paterno')
     apellido_m = models.CharField(max_length=25)
 
 class Especialidades(models.Model):
