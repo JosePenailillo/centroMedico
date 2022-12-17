@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from clinicApp.forms import SecretariaForm, MedicoForm, PacienteForm, HojaForm
 from clinicApp.models import Secretaria, Medico, Paciente, HojaAtencion
 
-
+from django.db.models import Q
 # Create your views here.
 
 def startSecretaria(request):
@@ -27,10 +27,10 @@ def agregarSecretaria(request):
         if formularioSecretaria.is_valid():
             secre = formularioSecretaria.cleaned_data
             secretaria = Secretaria(
-                rut=secre['rut'],
-                nombres=secre['nombres'],
-                apellido_p=secre['apellido_p'],
-                apellido_m=secre['apellido_m'],
+                Rut=secre['Rut'],
+                Nombres=secre['Nombres'],
+                Apellido_Paterno=secre['Apellido_Paterno'],
+                Apellido_Materno=secre['Apellido_Materno'],
             )
             #secretaria.save()
             form = ''
@@ -85,16 +85,16 @@ def agregarMedico(request):
         if formularioMedico.is_valid():
             medic = formularioMedico.cleaned_data
             medico = Medico(
-                rut=medic['rut'],
-                nombres=medic['nombres'],
-                apellido_p=medic['apellido_p'],
-                apellido_m=medic['apellido_m'],
-                category=medic['category'],
+                Rut=medic['Rut'],
+                Nombres=medic['Nombres'],
+                Apellido_Paterno=medic['Apellido_Paterno'],
+                Apellido_Materno=medic['Apellido_Materno'],
+                Categoria=medic['Categoria'],
 
-                #nombres = models.CharField(max_length=50)
-                #apellido_p = models.CharField(max_length=25)
-                #apellido_m = models.CharField(max_length=25)
-                #category = models.ForeignKey(Especialidades, on_delete=models.SET_NULL, null=True)
+                #Nombres = models.CharField(max_length=50)
+                #Apellido_Paterno = models.CharField(max_length=25)
+                #Apellido_Materno = models.CharField(max_length=25)
+                #Categoria = models.ForeignKey(Especialidades, on_delete=models.SET_NULL, null=True)
             )
             #medico.save()
             formularioMedico.save()
@@ -134,13 +134,15 @@ def eliminarMedico(request, id):
 
 
 def startPaciente(request):
-
-    pacientes = Paciente.objects.all()
-    data = {
-        'pacientes': pacientes
-
-        }
-    return render(request, 'paciente.html', data)
+    queryset= request.GET.get("buscar")
+    print(queryset)
+    pacientes = Paciente.objects.filter()
+    if queryset:
+        pacientes = Paciente.objects.filter(
+            Q(Nombres=queryset) |
+            Q(Rut=queryset)
+        ).distinct()
+    return render(request, 'paciente.html', {"pacientes": pacientes})
 
 def agregarPaciente(request):
     if request.method == 'POST':
@@ -148,18 +150,18 @@ def agregarPaciente(request):
         if formularioPaciente.is_valid():
             paci = formularioPaciente.cleaned_data
             paciente = Paciente(
-                rut= paci['rut'],
-                apellido_p=paci['apellido_p'],
-                apellido_m=paci['apellido_m'],
-                gender=paci['gender'],
-                dateB=paci['dateB'],
-                address=paci['address'],
+                Rut= paci['Rut'],
+                Apellido_Paterno=paci['Apellido_Paterno'],
+                Apellido_Materno=paci['Apellido_Materno'],
+                Genero=paci['Genero'],
+                Fecha_Nacimiento=paci['Fecha_Nacimiento'],
+                Direccion=paci['Direccion'],
                 Comuna=paci['Comuna'],
-                phone=paci['phone'],
-                emergencyContact=paci['emergencyContact'],
-                emergencyPhone=paci['emergencyPhone'],
-                country=paci['country'],
-                health=paci['health']
+                Telefono=paci['Telefono'],
+                Contacto_de_Emergencia=paci['Contacto_de_Emergencia'],
+                Telefono_de_Emergencia=paci['Telefono_de_Emergencia'],
+                Nacionalidad=paci['Nacionalidad'],
+                Sistema_de_Salud=paci['Sistema_de_Salud']
             )
             #paciente.save()
             formularioPaciente.save()
@@ -212,16 +214,16 @@ def agregarHoja(request):
         if formularioHoja.is_valid():
             hoj = formularioHoja.cleaned_data
             hoja = HojaAtencion(
-                rutPaciente = hoj['rutPaciente'],
-                profesionalAtendio= hoj['profesionalAtendio'],
-                anamnesisAnterior=hoj['anamnesisAnterior'],
-                medicamentosRecetados=hoj['medicamentosRecetados'],
-                examenesSolicitados=hoj['examenesSolicitados'],
-                alergias=hoj['alergias'],
-                historialEnfermedades=hoj['historialEnfermedades'],
-                medicamentosQueToma=hoj['medicamentosQueToma'],
-                diagnosticoObtenido=hoj['diagnosticoObtenido'],
-                observaciones=hoj['observaciones'],
+                Rut_Paciente = hoj['Rut_Paciente'],
+                Profesional_que_Atendio= hoj['Profesional_que_Atendio'],
+                Anamnesis=hoj['Anamnesis'],
+                Medicamentos_Recetados=hoj['Medicamentos_Recetados'],
+                Examenes_Solicitados=hoj['Examenes_Solicitados'],
+                Alergias=hoj['Alergias'],
+                Historial_de_Enfermedades=hoj['Historial_de_Enfermedades'],
+                Medicamentos_que_toma=hoj['Medicamentos_que_toma'],
+                Diagnostico=hoj['Diagnostico'],
+                Observaciones=hoj['Observaciones'],
             )
             #hoja.save()
             formularioHoja.save()

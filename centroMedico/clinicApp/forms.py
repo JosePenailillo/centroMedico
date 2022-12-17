@@ -5,21 +5,21 @@ from .models import Secretaria, Medico, Paciente, HojaAtencion
 
 
 class SecretariaForm(forms.Form):
-    rut = forms.CharField()
-    nombres = forms.CharField(
+    Rut = forms.CharField()
+    Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
         validators.MaxLengthValidator(50, message='El nombre debe tener maximo 15 caracteres'),
         ]
     )
 
-    apellido_p = forms.CharField(
+    Apellido_Paterno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
          ]
     )
-    apellido_m = forms.CharField(
+    Apellido_Materno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
@@ -28,31 +28,31 @@ class SecretariaForm(forms.Form):
     )
 
 
-    rut.widget.attrs['class'] = 'form-control'
-    nombres.widget.attrs['class'] = 'form-control'
-    apellido_p.widget.attrs['class'] = 'form-control'
-    apellido_m.widget.attrs['class'] = 'form-control'
+    Rut.widget.attrs['class'] = 'form-control'
+    Nombres.widget.attrs['class'] = 'form-control'
+    Apellido_Paterno.widget.attrs['class'] = 'form-control'
+    Apellido_Materno.widget.attrs['class'] = 'form-control'
 
 class SecretariaForm(forms.ModelForm):
     class Meta:
         model = Secretaria
         fields = '__all__'
 
-    rut = forms.CharField()
-    nombres = forms.CharField(
+    Rut = forms.CharField()
+    Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
         validators.MaxLengthValidator(50, message='El nombre debe tener maximo 15 caracteres'),
         ]
     )
 
-    apellido_p = forms.CharField(
+    Apellido_Paterno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
          ]
     )
-    apellido_m = forms.CharField(
+    Apellido_Materno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
@@ -62,10 +62,10 @@ class SecretariaForm(forms.ModelForm):
 
 
 
-    rut.widget.attrs['class'] = 'form-control'
-    nombres.widget.attrs['class'] = 'form-control'
-    apellido_p.widget.attrs['class'] = 'form-control'
-    apellido_m.widget.attrs['class'] = 'form-control'
+    Rut.widget.attrs['class'] = 'form-control'
+    Nombres.widget.attrs['class'] = 'form-control'
+    Apellido_Paterno.widget.attrs['class'] = 'form-control'
+    Apellido_Materno.widget.attrs['class'] = 'form-control'
 
 class Especialidades(forms.Form):
     name = forms.CharField(max_length=50)
@@ -78,21 +78,21 @@ class Especialidades(forms.Form):
 
 
 class MedicoForm(forms.Form):
-    rut = forms.CharField()
-    nombres = forms.CharField(
+    Rut = forms.CharField()
+    Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
         validators.MaxLengthValidator(50, message='El nombre debe tener maximo 15 caracteres'),
         ]
     )
 
-    apellido_p = forms.CharField(
+    Apellido_Paterno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(25, message='El apellido debe tener maximo 15 caracteres'),
          ]
     )
-    apellido_m = forms.CharField(
+    Apellido_Materno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
@@ -100,28 +100,28 @@ class MedicoForm(forms.Form):
         ]
     )
 
-    especialidad = forms.CharField(
+    Especialidad = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='La especialidad debe contener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='La especialidad debe contener maximo 15 caracteres'),
+                    validators.MinLengthValidator(3, message='La Especialidad debe contener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='La Especialidad debe contener maximo 15 caracteres'),
         ]
     )
 
 
-    rut.widget.attrs['class'] = 'form-control'
-    nombres.widget.attrs['class'] = 'form-control'
-    apellido_p.widget.attrs['class'] = 'form-control'
-    apellido_m.widget.attrs['class'] = 'form-control'
-    especialidad.widget.attrs['class'] = 'form-control'
+    Rut.widget.attrs['class'] = 'form-control'
+    Nombres.widget.attrs['class'] = 'form-control'
+    Apellido_Paterno.widget.attrs['class'] = 'form-control'
+    Apellido_Materno.widget.attrs['class'] = 'form-control'
+    Especialidad.widget.attrs['class'] = 'form-control'
 
 class MedicoForm(forms.ModelForm):
         class Meta:
             model = Medico
             fields = '__all__'
 
-        rut = forms.CharField()
-        nombres = forms.CharField(
+        Rut = forms.CharField()
+        Nombres = forms.CharField(
             validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                        message='La primera letra debe contener mayuscula y debe ser caracteres'),
                         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
@@ -129,50 +129,50 @@ class MedicoForm(forms.ModelForm):
                         ]
         )
 
-        apellido_p = forms.CharField(
+        Apellido_Paterno = forms.CharField(
             validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                        message='La primera letra debe contener mayuscula y debe ser caracteres'),
                         validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                         validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
                         ]
         )
-        apellido_m = forms.CharField(
+        Apellido_Materno = forms.CharField(
             validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                        message='La primera letra debe contener mayuscula y debe ser caracteres'),
                         validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                         validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
                         ]
         )
-        especialidad = forms.CharField(
+        Especialidad = forms.CharField(
             validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                        message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                        validators.MinLengthValidator(3, message='La especialidad debe contener minimo 3 caracteres'),
+                        validators.MinLengthValidator(3, message='La Especialidad debe contener minimo 3 caracteres'),
                         validators.MaxLengthValidator(50, message='La especialdad debe contener maximo 15 caracteres'),
                         ]
         )
-        rut.widget.attrs['class'] = 'form-control'
-        nombres.widget.attrs['class'] = 'form-control'
-        apellido_p.widget.attrs['class'] = 'form-control'
-        apellido_m.widget.attrs['class'] = 'form-control'
-        especialidad.widget.attrs['class'] = 'form-control'
+        Rut.widget.attrs['class'] = 'form-control'
+        Nombres.widget.attrs['class'] = 'form-control'
+        Apellido_Paterno.widget.attrs['class'] = 'form-control'
+        Apellido_Materno.widget.attrs['class'] = 'form-control'
+        Especialidad.widget.attrs['class'] = 'form-control'
 
        #paciente
 class PacienteForm(forms.Form):
-    rut = forms.IntegerField()
-    nombres = forms.CharField(
+    Rut = forms.CharField()
+    Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
         validators.MaxLengthValidator(50, message='El nombre debe tener maximo 15 caracteres'),
         ]
     )
 
-    apellido_p = forms.CharField(
+    Apellido_Paterno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
          ]
     )
-    apellido_m = forms.CharField(
+    Apellido_Materno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
@@ -180,21 +180,21 @@ class PacienteForm(forms.Form):
         ]
     )
 
-    gender = forms.CharField(
+    Genero = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El gender debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El gender debe tener maximo 15 caracteres'),
+                    validators.MinLengthValidator(3, message='El Genero debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El Genero debe tener maximo 15 caracteres'),
 
                     ]
     )
 
-    dateB = forms.DateTimeField(
+    Fecha_Nacimiento = forms.CharField(
         validators=[]
     )
 
-    address = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+    Direccion = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z][0-9]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El adress debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El adress debe tener maximo 15 caracteres'),
@@ -211,22 +211,22 @@ class PacienteForm(forms.Form):
                     ]
     )
 
-    phone = forms.IntegerField()
-    emergencyContact = forms.IntegerField()
+    Telefono = forms.IntegerField()
+    Contacto_de_Emergencia = forms.IntegerField()
 
-    emergencyPhone = forms.IntegerField()
+    Telefono_de_Emergencia = forms.IntegerField()
 
 
-    country = forms.CharField(
+    Nacionalidad = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El country debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El country debe tener maximo 15 caracteres'),
+                    validators.MinLengthValidator(3, message='El Nacionalidad debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El Nacionalidad debe tener maximo 15 caracteres'),
 
                     ]
     )
 
-    health = forms.CharField(
+    Sistema_de_Salud = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El  campo salud tener minimo 3 caracteres'),
@@ -240,8 +240,8 @@ class PacienteForm(forms.ModelForm):
         model = Paciente
         fields = '__all__'
 
-    rut = forms.IntegerField()
-    nombres = forms.CharField(
+    Rut = forms.CharField()
+    Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El nombre debe tener minimo 3 caracteres'),
@@ -249,14 +249,14 @@ class PacienteForm(forms.ModelForm):
                     ]
     )
 
-    apellido_p = forms.CharField(
+    Apellido_Paterno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El apellido debe tener maximo 15 caracteres'),
                     ]
     )
-    apellido_m = forms.CharField(
+    Apellido_Materno = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El apellido debe tener minimo 3 caracteres'),
@@ -264,20 +264,20 @@ class PacienteForm(forms.ModelForm):
                     ]
     )
 
-    gender = forms.CharField(
+    Genero = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El gender debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El gender debe tener maximo 15 caracteres'),
+                    validators.MinLengthValidator(3, message='El Genero debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El Genero debe tener maximo 15 caracteres'),
 
                     ]
     )
 
-    dateB = forms.DateTimeField(
+    Fecha_Nacimiento = forms.CharField(
         validators=[]
     )
 
-    address = forms.CharField(
+    Direccion = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El adress debe tener minimo 3 caracteres'),
@@ -295,53 +295,53 @@ class PacienteForm(forms.ModelForm):
                     ]
     )
 
-    phone = forms.IntegerField()
+    Telefono = forms.IntegerField()
 
 
-    emergencyContact = forms.IntegerField()
+    Contacto_de_Emergencia = forms.IntegerField()
 
 
-    emergencyPhone = forms.IntegerField()
+    Telefono_de_Emergencia = forms.IntegerField()
 
 
-    country = forms.CharField(
+    Nacionalidad = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El country debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El country debe tener maximo 15 caracteres'),
+                    validators.MinLengthValidator(3, message='El Nacionalidad debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El Nacionalidad debe tener maximo 15 caracteres'),
 
                     ]
     )
 
-    health = forms.CharField(
+    Sistema_de_Salud = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El health debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El health debe tener maximo 15 caracteres'),
+                    validators.MinLengthValidator(3, message='El Sistema_de_Salud debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El Sistema_de_Salud debe tener maximo 15 caracteres'),
 
                     ]
     )
 
-    rut.widget.attrs['class'] = 'form-control'
-    nombres.widget.attrs['class'] = 'form-control'
-    apellido_p.widget.attrs['class'] = 'form-control'
-    apellido_m.widget.attrs['class'] = 'form-control'
-    gender.widget.attrs['class'] = 'form-control'
-    dateB.widget.attrs['class'] = 'form-control'
-    address.widget.attrs['class'] = 'form-control'
+    Rut.widget.attrs['class'] = 'form-control'
+    Nombres.widget.attrs['class'] = 'form-control'
+    Apellido_Paterno.widget.attrs['class'] = 'form-control'
+    Apellido_Materno.widget.attrs['class'] = 'form-control'
+    Genero.widget.attrs['class'] = 'form-control'
+    Fecha_Nacimiento.widget.attrs['class'] = 'form-control'
+    Direccion.widget.attrs['class'] = 'form-control'
     Comuna.widget.attrs['class'] = 'form-control'
-    phone.widget.attrs['class'] = 'form-control'
-    emergencyContact.widget.attrs['class'] = 'form-control'
-    emergencyPhone.widget.attrs['class'] = 'form-control'
-    country.widget.attrs['class'] = 'form-control'
-    health.widget.attrs['class'] = 'form-control'
+    Telefono.widget.attrs['class'] = 'form-control'
+    Contacto_de_Emergencia.widget.attrs['class'] = 'form-control'
+    Telefono_de_Emergencia.widget.attrs['class'] = 'form-control'
+    Nacionalidad.widget.attrs['class'] = 'form-control'
+    Sistema_de_Salud.widget.attrs['class'] = 'form-control'
 
 
 #hoja atencion
 
 class HojaForm(forms.Form):
-    rutPaciente = forms.CharField()
-    profesionalAtendio = forms.CharField(
+    Rut_Paciente = forms.CharField()
+    Profesional_que_Atendio = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -349,30 +349,21 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    anamnesisAnterior = forms.CharField(
+    Anamnesis = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
                     ]
     )
-    medicamentosRecetados = forms.CharField(
+    Medicamentos_Recetados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
                     ]
     )
-    examenesSolicitados = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-
-                    ]
-    )
-
-    alergias = forms.CharField(
+    Examenes_Solicitados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -381,7 +372,7 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    historialEnfermedades= forms.CharField(
+    Alergias = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -390,7 +381,7 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    medicamentosQueToma = forms.CharField(
+    Historial_de_Enfermedades= forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -399,7 +390,7 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    diagnosticoObtenido = forms.CharField(
+    Medicamentos_que_toma = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -408,7 +399,16 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    observaciones = forms.CharField(
+    Diagnostico = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+
+                    ]
+    )
+
+    Observaciones = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -423,9 +423,9 @@ class HojaForm(forms.ModelForm):
         model = HojaAtencion
         fields = '__all__'
 
-    rutPaciente = forms.CharField()
-    profesionalAtendio  = forms.CharField()
-    anamnesisAnterior = forms.CharField(
+    Rut_Paciente = forms.CharField()
+    Profesional_que_Atendio  = forms.CharField()
+    Anamnesis = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -433,37 +433,28 @@ class HojaForm(forms.ModelForm):
                     ]
     )
 
-    medicamentosRecetados = forms.CharField(
+    Medicamentos_Recetados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
                     ]
     )
-    examenesSolicitados = forms.CharField(
+    Examenes_Solicitados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
                     ]
     )
-    alergias = forms.CharField(
+    Alergias = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
                     ]
     )
-    historialEnfermedades = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-
-                    ]
-    )
-
-    medicamentosQueToma = forms.CharField(
+    Historial_de_Enfermedades = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -472,7 +463,7 @@ class HojaForm(forms.ModelForm):
                     ]
     )
 
-    diagnosticoObtenido = forms.CharField(
+    Medicamentos_que_toma = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -481,7 +472,7 @@ class HojaForm(forms.ModelForm):
                     ]
     )
 
-    observaciones = forms.CharField(
+    Diagnostico = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
                     validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
@@ -490,16 +481,25 @@ class HojaForm(forms.ModelForm):
                     ]
     )
 
-    rutPaciente.widget.attrs['class'] = 'form-control'
-    profesionalAtendio.widget.attrs['class'] = 'form-control'
-    medicamentosRecetados.widget.attrs['class'] = 'form-control'
-    anamnesisAnterior.widget.attrs['class'] = 'form-control'
-    examenesSolicitados.widget.attrs['class'] = 'form-control'
-    alergias.widget.attrs['class'] = 'form-control'
-    historialEnfermedades.widget.attrs['class'] = 'form-control'
-    medicamentosQueToma.widget.attrs['class'] = 'form-control'
-    diagnosticoObtenido.widget.attrs['class'] = 'form-control'
-    observaciones.widget.attrs['class'] = 'form-control'
+    Observaciones = forms.CharField(
+        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
+                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
+                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
+                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+
+                    ]
+    )
+
+    Rut_Paciente.widget.attrs['class'] = 'form-control'
+    Profesional_que_Atendio.widget.attrs['class'] = 'form-control'
+    Medicamentos_Recetados.widget.attrs['class'] = 'form-control'
+    Anamnesis.widget.attrs['class'] = 'form-control'
+    Examenes_Solicitados.widget.attrs['class'] = 'form-control'
+    Alergias.widget.attrs['class'] = 'form-control'
+    Historial_de_Enfermedades.widget.attrs['class'] = 'form-control'
+    Medicamentos_que_toma.widget.attrs['class'] = 'form-control'
+    Diagnostico.widget.attrs['class'] = 'form-control'
+    Observaciones.widget.attrs['class'] = 'form-control'
 
 
 
