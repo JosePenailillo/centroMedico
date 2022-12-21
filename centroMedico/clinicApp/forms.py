@@ -340,7 +340,7 @@ class PacienteForm(forms.ModelForm):
 #hoja atencion
 
 class HojaForm(forms.Form):
-    Rut_Paciente = forms.CharField()
+    #Rut_Paciente = forms.CharField()
     Profesional_que_Atendio = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
@@ -408,14 +408,7 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    Observaciones = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-
-                    ]
-    )
+    Observaciones = forms.CharField(widget=forms.Textarea())
 
 
 class HojaForm(forms.ModelForm):
@@ -423,7 +416,7 @@ class HojaForm(forms.ModelForm):
         model = HojaAtencion
         fields = '__all__'
 
-    Rut_Paciente = forms.CharField()
+    #Rut_Paciente = forms.CharField()
     Profesional_que_Atendio  = forms.CharField()
     Anamnesis = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
@@ -481,16 +474,9 @@ class HojaForm(forms.ModelForm):
                     ]
     )
 
-    Observaciones = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
+    Observaciones = forms.CharField(widget=forms.Textarea())
 
-                    ]
-    )
-
-    Rut_Paciente.widget.attrs['class'] = 'form-control'
+    #Rut_Paciente.widget.attrs['class'] = 'form-control'
     Profesional_que_Atendio.widget.attrs['class'] = 'form-control'
     Medicamentos_Recetados.widget.attrs['class'] = 'form-control'
     Anamnesis.widget.attrs['class'] = 'form-control'

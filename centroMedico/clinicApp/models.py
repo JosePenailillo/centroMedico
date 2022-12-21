@@ -44,7 +44,7 @@ class Paciente(models.Model):
 
 class HojaAtencion(models.Model):
 
-    Rut_Paciente = models.CharField(max_length=25)
+    #Rut_Paciente = models.CharField(max_length=25)
     Profesional_que_Atendio = models.CharField(max_length=25)
     Anamnesis = models.CharField(max_length=250)
     Medicamentos_Recetados = models.CharField(max_length=250)
@@ -53,7 +53,7 @@ class HojaAtencion(models.Model):
     Historial_de_Enfermedades = models.CharField(max_length=500)
     Medicamentos_que_toma = models.CharField(max_length=250)
     Diagnostico = models.CharField(max_length=500)
-    Observaciones = models.CharField(max_length=250)
+    Observaciones = models.TextField(max_length=250)
 
 
 
