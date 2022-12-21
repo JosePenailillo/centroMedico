@@ -214,7 +214,7 @@ def agregarHoja(request):
         if formularioHoja.is_valid():
             hoj = formularioHoja.cleaned_data
             hoja = HojaAtencion(
-                #Rut_Paciente = hoj['Rut_Paciente'],
+                Rut_Paciente=hoj['Rut_Paciente'],
                 Profesional_que_Atendio= hoj['Profesional_que_Atendio'],
                 Anamnesis=hoj['Anamnesis'],
                 Medicamentos_Recetados=hoj['Medicamentos_Recetados'],

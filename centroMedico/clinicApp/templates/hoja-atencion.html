@@ -41,6 +41,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Rut Paciente</th>
                                 <th>Profesional que atiende</th>
                                 <th>Anamnesis Anterior</th>
                                 <th>Medicamentos Recetados</th>
@@ -58,6 +59,7 @@
                             {% for e in hojaAtencion %}
                             <tr>
                                 <td scope="row"> {{e.id}}</td>
+                                <td><b>{{e.Rut_Paciente}}</b></td>
                                 <td><b>{{e.Profesional_que_Atendio}}</b></td>
                                 <td><b>{{e.Anamnesis}}</b></td>
                                 <td><b>{{e.Medicamentos_Recetados}}</b></td>
@@ -91,8 +93,10 @@
             <a class="btn btn-success" href="{% url 'login' %}"> Iniciar Sesión</a>
         </h1>
     {% endif %}
+
+    <!--footer-->
+    <div id="foot" class="text-center p-4">
+        <h5>@AllianSalud 2022</h5>
+    </div>
 </body>
-<footer class="p-4">
-    <h5>@AllianSalud 2022</h5>
-</footer>
 </html>
