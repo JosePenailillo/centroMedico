@@ -349,13 +349,7 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    Anamnesis = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-                    ]
-    )
+    Anamnesis = forms.CharField(widget=forms.Textarea())
     Medicamentos_Recetados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
                                    message='La primera letra debe contener mayuscula y debe ser caracteres'),
@@ -399,14 +393,7 @@ class HojaForm(forms.Form):
                     ]
     )
 
-    Diagnostico = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-
-                    ]
-    )
+    Diagnostico = forms.CharField(widget=forms.Textarea())
 
     Observaciones = forms.CharField(widget=forms.Textarea())
 
@@ -418,13 +405,7 @@ class HojaForm(forms.ModelForm):
 
     Rut_Paciente = forms.CharField()
     Profesional_que_Atendio  = forms.CharField()
-    Anamnesis = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-                    ]
-    )
+    Anamnesis = forms.CharField(widget=forms.Textarea())
 
     Medicamentos_Recetados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
@@ -465,14 +446,7 @@ class HojaForm(forms.ModelForm):
                     ]
     )
 
-    Diagnostico = forms.CharField(
-        validators=[RegexValidator(regex='^[A-Z][a-z]*$',
-                                   message='La primera letra debe contener mayuscula y debe ser caracteres'),
-                    validators.MinLengthValidator(3, message='El campo debe tener minimo 3 caracteres'),
-                    validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
-
-                    ]
-    )
+    Diagnostico = forms.CharField(widget=forms.Textarea())
 
     Observaciones = forms.CharField(widget=forms.Textarea())
 

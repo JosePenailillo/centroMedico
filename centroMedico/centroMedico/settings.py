@@ -83,7 +83,7 @@ DATABASES = {
         #'PORT': '8889',
         'NAME': 'centroMedico',
         'USER': 'root',
-        'PASSWORD': '----'
+        'PASSWORD': 'josepe1683'
     }
 }
 

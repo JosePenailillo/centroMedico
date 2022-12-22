@@ -31,14 +31,51 @@
             <h2 class="text-center mt-5">Editar Hoja de Atención</h2>
             <div class="container-fluid text-center mt-5">
                 <div class="row justify-content-center">
-                    <div class="col col-lg-4 border border-dark p-4 rounded border-2 align-self-center">
+                    <div class="col col-lg-7 border border-dark p-3 rounded border-2 align-self-center">
                         <!--
                         style="width:100% para darle ancho máximo al botón
                         background-color:rgb(83,144,145) color del botón
                         -->
                         <form method="POST">
-                            <table>
-                                {{formularioHoja}}
+                            <table class="form-row">
+
+                                <tr>
+                                    <th>Rut Paciente</th>
+                                    <td><b>{{formularioHoja.Rut_Paciente}}</b></td>
+                                    <th>Profesional que atiende</th>
+                                    <td><b>{{formularioHoja.Profesional_que_Atendio}}</b></td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha Atención</th>
+                                    <td><b>{{formularioHoja.Alergias}}</b></td>
+                                    <th>Alergias</th>
+                                    <td><b>{{formularioHoja.Alergias}}</b></td>
+                                </tr>
+                                <tr>
+                                    <th>Historial de Enfermedades</th>
+                                    <td colspan="3"><b>{{formularioHoja.Historial_de_Enfermedades}}</b></td>
+                                </tr>
+                                <tr>
+                                    <th>Medicamentos que toma</th>
+                                    <td colspan="3"><b>{{formularioHoja.Medicamentos_que_toma}}</b></td>
+                                </tr>
+                                <tr>
+                                    <th>Anamnesis</th>
+                                    <td rowspan="2" ><b>{{formularioHoja.Anamnesis}}</b></td>
+                                    <th>Diagnóstico</th>
+                                    <td rowspan="2" ><b>{{formularioHoja.Diagnostico}}</b></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                    <th>Medicamentos Recetados</th>
+                                    <td><b>{{formularioHoja.Medicamentos_Recetados}}</b></td>
+                                    <th>Examenes Solicitados</th>
+                                    <td><b>{{formularioHoja.Examenes_Solicitados}}</b></td>
+                                </tr>
+                                <tr>
+                                    <th>Observaciones</th>
+                                    <td colspan="3"><b>{{formularioHoja.Observaciones}}</b></td>
+                                </tr>
                             </table>
                             <!--<button type="submit" > Agregar</button>-->
                             <hr>
