@@ -348,7 +348,9 @@ class HojaForm(forms.Form):
                     validators.MaxLengthValidator(50, message='El campo debe tener maximo 15 caracteres'),
                     ]
     )
-
+    Fecha_Atencion = forms.CharField(
+        validators=[]
+    )
     Anamnesis = forms.CharField(widget=forms.Textarea())
     Medicamentos_Recetados = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-z]*$',
@@ -405,6 +407,9 @@ class HojaForm(forms.ModelForm):
 
     Rut_Paciente = forms.CharField()
     Profesional_que_Atendio  = forms.CharField()
+    Fecha_Atencion = forms.CharField(
+        validators=[]
+    )
     Anamnesis = forms.CharField(widget=forms.Textarea())
 
     Medicamentos_Recetados = forms.CharField(
@@ -452,6 +457,7 @@ class HojaForm(forms.ModelForm):
 
     Rut_Paciente.widget.attrs['class'] = 'form-control'
     Profesional_que_Atendio.widget.attrs['class'] = 'form-control'
+    Fecha_Atencion.widget.attrs['class'] = 'form-control'
     Medicamentos_Recetados.widget.attrs['class'] = 'form-control'
     Anamnesis.widget.attrs['class'] = 'form-control'
     Examenes_Solicitados.widget.attrs['class'] = 'form-control'

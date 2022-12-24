@@ -46,6 +46,7 @@ class HojaAtencion(models.Model):
 
     Rut_Paciente = models.CharField(max_length=25)
     Profesional_que_Atendio = models.CharField(max_length=25)
+    Fecha_Atencion = models.DateTimeField(blank=True, null=True)
     Alergias = models.CharField(max_length=125)
     Historial_de_Enfermedades = models.CharField(max_length=500)
     Medicamentos_que_toma = models.CharField(max_length=250)

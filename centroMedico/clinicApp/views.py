@@ -216,6 +216,7 @@ def agregarHoja(request):
             hoja = HojaAtencion(
                 Rut_Paciente=hoj['Rut_Paciente'],
                 Profesional_que_Atendio= hoj['Profesional_que_Atendio'],
+                Fecha_Atencion=hoj['Fecha_Atencion'],
                 Anamnesis=hoj['Anamnesis'],
                 Medicamentos_Recetados=hoj['Medicamentos_Recetados'],
                 Examenes_Solicitados=hoj['Examenes_Solicitados'],
