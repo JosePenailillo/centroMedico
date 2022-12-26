@@ -18,7 +18,7 @@ from django.urls import path, include
 
 from clinicApp.views import agregarSecretaria, startSecretaria, editarSecretaria, eliminarSecretaria, startMedico, \
     agregarMedico, editarMedico, startPaciente, agregarPaciente, editarPaciente, startHoja, agregarHoja, editarHoja, \
-    eliminarMedico, eliminarPaciente, eliminarHoja, index, vistaMedico, selVista, vistaSecretaria
+    eliminarMedico, eliminarPaciente, eliminarHoja, index, vistaMedico, selVista, vistaSecretaria, permisos, noPermitido
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,4 +43,6 @@ urlpatterns = [
     path('vistamedico/', vistaMedico),
     path('vistasecretaria/', vistaSecretaria),
     path('seleccionvista', selVista),
+    path('permisos/', permisos),
+    path('no-permitido/', noPermitido)
 ]

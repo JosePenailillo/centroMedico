@@ -48,7 +48,9 @@
                                         <th>Apellido Materno</th>
                                         <th>Especialidad</th>
                                         <th></th>
-                                        <th></th>
+                                        {% if perms.clinicApp.delete_medico %}
+                                            <th></th>
+                                        {% endif %}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,7 +65,10 @@
                                     <!--<td><a href="editar/{{e.id}}">Editar</a></td>-->
                                     <td><a href="/editarmedico/{{e.id}}" type="button" class="btn btn-outline-light" style="width:100%; background-color:rgb(83,144,145)">Editar</a></td>
                                     <!--<td><a href="eliminar/{{e.id}}">Eliminar</a></td>-->
-                                    <td><a href="/eliminarmedico/{{e.id}}" type="button" class="btn btn-danger" style="width:100px">Eliminar</a></td>
+                                    <!--si no tiene los permisos, no muestra el botón-->
+                                    {% if perms.clinicApp.delete_medico %}
+                                        <td><a href="/eliminarmedico/{{e.id}}" type="button" class="btn btn-danger" style="width:100px">Eliminar</a></td>
+                                    {% endif %}
                                 </tr>
                                 {% endfor %}
                                 </tbody>
