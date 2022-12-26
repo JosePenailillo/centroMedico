@@ -32,6 +32,7 @@ urlpatterns = [
     path('editarmedico/<int:id>', editarMedico),
     path('eliminarmedico/<int:id>', eliminarMedico),
     path('paciente/', startPaciente, name="paciente"),
+    path('pacientemed/', startPaciente, name="pacientemed"),
     path('agregarpaciente/', agregarPaciente),
     path('editarpaciente/<int:id>', editarPaciente),
     path('eliminarpaciente/<int:id>', eliminarPaciente),
