@@ -147,6 +147,17 @@ def startPaciente(request):
         ).distinct()
     return render(request, 'paciente.html', {"pacientes": pacientes})
 
+def startPacienteMed(request):
+    queryset= request.GET.get("buscar")
+    print(queryset)
+    pacientes = Paciente.objects.filter()
+    if queryset:
+        pacientes = Paciente.objects.filter(
+            Q(Nombres=queryset) |
+            Q(Rut=queryset)
+        ).distinct()
+    return render(request, 'pacientemed.html', {"pacientes": pacientes})
+
 @permission_required('clinicApp.add_paciente')
 def agregarPaciente(request):
     if request.method == 'POST':
