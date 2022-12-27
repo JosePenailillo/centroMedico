@@ -33,11 +33,11 @@ class Paciente(models.Model):
     Apellido_Materno = models.CharField(max_length=25)
     Fecha_Nacimiento = models.DateTimeField(blank=True, null=True)
     Genero = models.CharField(max_length=25)
-    Direccion = models.CharField(max_length=25)
+    Direccion = models.CharField(max_length=50)
     Comuna = models.CharField(max_length=25)
     Nacionalidad = models.CharField(max_length=25)
     Telefono = models.CharField(max_length=25)
-    Contacto_de_Emergencia = models.CharField(max_length=25)
+    Contacto_de_Emergencia = models.CharField(max_length=50)
     Telefono_de_Emergencia = models.CharField(max_length=25)
     Sistema_de_Salud = models.CharField(max_length=25)
 
@@ -45,7 +45,7 @@ class Paciente(models.Model):
 class HojaAtencion(models.Model):
 
     Rut_Paciente = models.CharField(max_length=25)
-    Profesional_que_Atendio = models.CharField(max_length=25)
+    Profesional_que_Atendio = models.CharField(max_length=50)
     Fecha_Atencion = models.DateTimeField(blank=True, null=True)
     Alergias = models.CharField(max_length=125)
     Historial_de_Enfermedades = models.CharField(max_length=500)
