@@ -11,13 +11,15 @@ from django.db.models import Q
 
 @permission_required('clinicApp.add_secretaria')
 def startSecretaria(request):
-
-    secretarias = Secretaria.objects.all()
-    data = {
-        'secretarias': secretarias
-
-        }
-    return render(request, 'secretaria.html', data)
+    queryset = request.GET.get("buscar")
+    print(queryset)
+    secretarias = Secretaria.objects.filter()
+    if queryset:
+        secretarias = Secretaria.objects.filter(
+            Q(Apellido_Paterno=queryset) |
+            Q(Rut=queryset)
+        ).distinct()
+    return render(request, 'secretaria.html', {"secretarias": secretarias})
 
 #SecretariaForm = modelform_factory(Secretaria, exclude=[])
 #MedicoForm = modelform_factory(Medico, exclude=[])
@@ -76,7 +78,7 @@ def eliminarSecretaria(request, id):
 def startMedico(request):
     queryset= request.GET.get("buscar")
     print(queryset)
-    medicos = Medico.objects.all()
+    medicos = Medico.objects.filter()
     if queryset:
         medicos = Medico.objects.filter(
             Q(Rut=queryset) |
@@ -144,7 +146,7 @@ def startPaciente(request):
     pacientes = Paciente.objects.filter()
     if queryset:
         pacientes = Paciente.objects.filter(
-            Q(Nombres=queryset) |
+            Q(Apellido_Paterno=queryset) |
             Q(Rut=queryset)
         ).distinct()
     return render(request, 'paciente.html', {"pacientes": pacientes})
@@ -155,7 +157,7 @@ def startPacienteMed(request):
     pacientes = Paciente.objects.filter()
     if queryset:
         pacientes = Paciente.objects.filter(
-            Q(Nombres=queryset) |
+            Q(Apellido_Paterno=queryset) |
             Q(Rut=queryset)
         ).distinct()
     return render(request, 'pacientemed.html', {"pacientes": pacientes})
@@ -216,13 +218,16 @@ def eliminarPaciente(request, id):
 
 @permission_required('clinicApp.add_hojaatencion')
 def startHoja(request):
-
-    hojaAtencion = HojaAtencion.objects.all()
-    data = {
-        'hojaAtencion': hojaAtencion
-
-        }
-    return render(request, 'hoja-atencion.html', data)
+    queryset= request.GET.get("buscar")
+    print(queryset)
+    hojaAtencion = HojaAtencion.objects.filter()
+    if queryset:
+        hojaAtencion = HojaAtencion.objects.filter(
+            Q(Rut_Paciente=queryset) |
+            Q(Profesional_que_Atendio=queryset) |
+            Q(Fecha_Atencion=queryset)
+        ).distinct()
+    return render(request, 'hoja-atencion.html', {'hojaAtencion': hojaAtencion})
 
 @permission_required('clinicApp.add_hojaatencion')
 def agregarHoja(request):

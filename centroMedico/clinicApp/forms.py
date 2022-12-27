@@ -225,7 +225,7 @@ class PacienteForm(forms.Form):
 
     Telefono = forms.CharField(
         validators=[
-            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+            RegexValidator(regex='^(\+\d{1,3})?,?\s?\d{8,13}$',
                            message='Debe contener sólo números ej: +56912345678'),
             validators.MinLengthValidator(12, message='El teléfono debe tener mínimo 12 caracteres'),
             validators.MaxLengthValidator(15, message='El teléfono debe tener máximo 15 caracteres'),
@@ -241,7 +241,7 @@ class PacienteForm(forms.Form):
 
     Telefono_de_Emergencia = forms.CharField(
         validators=[
-            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+            RegexValidator(regex='^(\+\d{1,3})?,?\s?\d{8,13}$',
                            message='Debe contener sólo números ej: +56912345678'),
             validators.MinLengthValidator(12, message='El teléfono debe tener mínimo 12 caracteres'),
             validators.MaxLengthValidator(15, message='El teléfono debe tener máximo 15 caracteres'),
@@ -330,8 +330,8 @@ class PacienteForm(forms.ModelForm):
 
     Telefono = forms.CharField(
         validators=[
-            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
-                           message='Debe contener sólo números e: +56912345678'),
+            RegexValidator(regex='^(\+\d{1,3})?,?\s?\d{8,13}$',
+                           message='Debe contener sólo números ej: +56912345678'),
             validators.MinLengthValidator(12, message='El teléfono debe tener mínimo 12 caracteres'),
             validators.MaxLengthValidator(15, message='El teléfono debe tener máximo 15 caracteres'),
             ]
@@ -348,7 +348,7 @@ class PacienteForm(forms.ModelForm):
 
     Telefono_de_Emergencia = forms.CharField(
         validators=[
-            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+            RegexValidator(regex='^(\+\d{1,3})?,?\s?\d{8,13}$',
                            message='Debe contener sólo números e: +56912345678'),
             validators.MinLengthValidator(12, message='El teléfono debe tener mínimo 12 caracteres'),
             validators.MaxLengthValidator(15, message='El teléfono debe tener máximo 15 caracteres'),
