@@ -74,13 +74,15 @@ def eliminarSecretaria(request, id):
     return redirect('secretaria')
 @permission_required('clinicApp.add_medico')
 def startMedico(request):
-
+    queryset= request.GET.get("buscar")
+    print(queryset)
     medicos = Medico.objects.all()
-    data = {
-        'medicos': medicos
-
-        }
-    return render(request, 'medico.html', data)
+    if queryset:
+        medicos = Medico.objects.filter(
+            Q(Rut=queryset) |
+            Q(Apellido_Paterno=queryset)
+        ).distinct()
+    return render(request, 'medico.html', {"medicos": medicos})
 
 @permission_required('clinicApp.add_medico')
 def agregarMedico(request):
