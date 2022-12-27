@@ -5,7 +5,12 @@ from .models import Secretaria, Medico, Paciente, HojaAtencion
 
 
 class SecretariaForm(forms.Form):
-    Rut = forms.CharField()
+    Rut = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
     Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -40,7 +45,12 @@ class SecretariaForm(forms.ModelForm):
         model = Secretaria
         fields = '__all__'
 
-    Rut = forms.CharField()
+    Rut = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
     Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$', message='La primera letra debe contener mayuscula y debe ser caracteres'),
         validators.MinLengthValidator(3, message='El nombre debe tener mínimo 3 caracteres'),
@@ -81,7 +91,12 @@ class Especialidades(forms.Form):
 
 
 class MedicoForm(forms.Form):
-    Rut = forms.CharField()
+    Rut = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
     Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -116,7 +131,12 @@ class MedicoForm(forms.ModelForm):
             model = Medico
             fields = '__all__'
 
-        Rut = forms.CharField()
+        Rut = forms.CharField(
+            validators=[
+                validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+                validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+            ]
+        )
         Nombres = forms.CharField(
             validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                        message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -146,7 +166,12 @@ class MedicoForm(forms.ModelForm):
 
        #paciente
 class PacienteForm(forms.Form):
-    Rut = forms.CharField()
+    Rut = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
     Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -179,9 +204,7 @@ class PacienteForm(forms.Form):
                     ]
     )
 
-    Fecha_Nacimiento = forms.CharField(
-        validators=[]
-    )
+    Fecha_Nacimiento = forms.DateField(widget=forms.DateInput(format = '%d/%m/%Y'))
 
     Direccion = forms.CharField(
         validators=[
@@ -200,7 +223,14 @@ class PacienteForm(forms.Form):
                     ]
     )
 
-    Telefono = forms.IntegerField()
+    Telefono = forms.CharField(
+        validators=[
+            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+                           message='Debe contener sólo números e: +56912345678'),
+            validators.MinLengthValidator(12, message='El nombre debe tener mínimo 12 caracteres'),
+            validators.MaxLengthValidator(15, message='El nombre debe tener máximo 15 caracteres'),
+            ]
+    )
     Contacto_de_Emergencia = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -209,8 +239,14 @@ class PacienteForm(forms.Form):
         ]
     )
 
-    Telefono_de_Emergencia = forms.IntegerField()
-
+    Telefono_de_Emergencia = forms.CharField(
+        validators=[
+            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+                           message='Debe contener sólo números e: +56912345678'),
+            validators.MinLengthValidator(12, message='El nombre debe tener mínimo 12 caracteres'),
+            validators.MaxLengthValidator(15, message='El nombre debe tener máximo 15 caracteres'),
+            ]
+    )
 
     Nacionalidad = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
@@ -235,7 +271,12 @@ class PacienteForm(forms.ModelForm):
         model = Paciente
         fields = '__all__'
 
-    Rut = forms.CharField()
+    Rut = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
     Nombres = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -268,9 +309,7 @@ class PacienteForm(forms.ModelForm):
                     ]
     )
 
-    Fecha_Nacimiento = forms.CharField(
-        validators=[]
-    )
+    Fecha_Nacimiento = forms.DateField(widget=forms.DateInput(format = '%d/%m/%Y'))
 
     Direccion = forms.CharField(
         validators=[
@@ -289,8 +328,14 @@ class PacienteForm(forms.ModelForm):
                     ]
     )
 
-    Telefono = forms.IntegerField()
-
+    Telefono = forms.CharField(
+        validators=[
+            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+                           message='Debe contener sólo números e: +56912345678'),
+            validators.MinLengthValidator(12, message='El nombre debe tener mínimo 12 caracteres'),
+            validators.MaxLengthValidator(15, message='El nombre debe tener máximo 15 caracteres'),
+            ]
+    )
 
     Contacto_de_Emergencia = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
@@ -301,8 +346,14 @@ class PacienteForm(forms.ModelForm):
     )
 
 
-    Telefono_de_Emergencia = forms.IntegerField()
-
+    Telefono_de_Emergencia = forms.CharField(
+        validators=[
+            RegexValidator(regex='^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',
+                           message='Debe contener sólo números e: +56912345678'),
+            validators.MinLengthValidator(12, message='El nombre debe tener mínimo 12 caracteres'),
+            validators.MaxLengthValidator(15, message='El nombre debe tener máximo 15 caracteres'),
+            ]
+    )
 
     Nacionalidad = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
@@ -340,7 +391,12 @@ class PacienteForm(forms.ModelForm):
 #hoja atencion
 
 class HojaForm(forms.Form):
-    Rut_Paciente = forms.CharField()
+    Rut_Paciente = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
     Profesional_que_Atendio = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
@@ -348,9 +404,7 @@ class HojaForm(forms.Form):
                     validators.MaxLengthValidator(50, message='El campo debe tener máximo 50 caracteres'),
                     ]
     )
-    Fecha_Atencion = forms.CharField(
-        validators=[]
-    )
+    Fecha_Atencion = forms.DateField(widget=forms.DateInput(format = '%d/%m/%Y'))
     Anamnesis = forms.CharField(widget=forms.Textarea())
     Medicamentos_Recetados = forms.CharField(
         validators=[
@@ -400,17 +454,21 @@ class HojaForm(forms.ModelForm):
         model = HojaAtencion
         fields = '__all__'
 
-    Rut_Paciente = forms.CharField()
-    Profesional_que_Atendio  = forms.CharField(
+    Rut_Paciente = forms.CharField(
+        validators=[
+            validators.MinLengthValidator(9, message='El Rut debe tener mínimo 9 caracteres'),
+            validators.MaxLengthValidator(11, message='El Rut debe tener máximo 11 caracteres'),
+        ]
+    )
+    Profesional_que_Atendio = forms.CharField(
         validators=[RegexValidator(regex='^[A-Z][a-zÀ-ÿ\u00f1\u00d1]+(\s*[A-Za-zÀ-ÿ\u00f1\u00d1]*)*[A-Za-zÀ-ÿ\u00f1\u00d1]+$',
                                    message='La primera letra debe ser mayúscula y no debe tener números'),
                     validators.MinLengthValidator(3, message='El campo debe tener mínimo 3 caracteres'),
                     validators.MaxLengthValidator(50, message='El campo debe tener máximo 50 caracteres'),
                     ]
     )
-    Fecha_Atencion = forms.CharField(
-        validators=[]
-    )
+    Fecha_Atencion = forms.DateField(widget=forms.DateInput(format = '%d/%m/%Y'))
+
     Anamnesis = forms.CharField(widget=forms.Textarea())
 
     Medicamentos_Recetados = forms.CharField(
